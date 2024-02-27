@@ -14,20 +14,20 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_detail);
 
-       // TextView idTextView = findViewById(R.id.idTextView);
+        TextView idTextView = findViewById(R.id.idTextView);
         TextView nameTextView = findViewById(R.id.nameTextView);
         TextView emailTextView = findViewById(R.id.emailTextView);
         TextView phoneTextView = findViewById(R.id.phoneTextView);
-      //  TextView companyDetailTextView = findViewById(R.id.companyDetailTextView);
+        TextView webSiteTextView = findViewById(R.id.webSiteTextView);
 
        final Employee employee = (Employee) getIntent().getSerializableExtra("employee");
 
         assert employee != null;
-       // idTextView.setText(employee.getId());
+        idTextView.setText(employee.getId());
         nameTextView.setText(employee.getName());
         emailTextView.setText(employee.getEmail().toLowerCase());
         phoneTextView.setText(employee.getPhone());
-       // companyDetailTextView.setText(employee.getCompany());
+        webSiteTextView.setText(employee.getWebsite());
 
         // Handle email click
         emailTextView.setOnClickListener(new View.OnClickListener() {

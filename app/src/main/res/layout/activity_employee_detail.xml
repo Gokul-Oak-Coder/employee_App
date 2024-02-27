@@ -39,5 +39,13 @@
         android:layout_height="wrap_content"
         android:autoLink="phone"
         android:padding="16dp" />
+    <TextView
+        android:id="@+id/webSiteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
 
 </LinearLayout>
