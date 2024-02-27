@@ -3,7 +3,13 @@ package com.example.employeeapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import java.util.List;
 import retrofit2.Callback;
@@ -16,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private EmployeeAdapter adapter;
+    private Retrofit retrofit;
+    private Button retry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        retry = findViewById(R.id.retry);
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNetworkAvailable()) {
+                    retry.setVisibility(View.GONE);
+                    fetchData();
+                } else {
+                    Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // Initialize Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        if (isNetworkAvailable()) {
+            fetchData();
+        } else {
+            // Display a message indicating no internet connection
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
+        }
 
+    }
+
+    private void fetchData() {
         // Create service instance
         EmployeeService service = retrofit.create(EmployeeService.class);
 
@@ -45,13 +74,25 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to fetch employees", Toast.LENGTH_SHORT).show();
+                    retry.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Employee>> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Failed to fetch employees: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                retry.setVisibility(View.VISIBLE);
             }
         });
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
+    }
+
 }

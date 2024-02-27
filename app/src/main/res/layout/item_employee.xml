@@ -22,4 +22,5 @@
         android:textSize="16sp"
         android:textColorLink="@android:color/black"
         android:autoLink="email" />
+
 </LinearLayout>
