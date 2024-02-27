@@ -34,13 +34,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         Employee employee = employees.get(position);
         holder.bind(employee);
 
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EmployeeDetailActivity.class);
+                Intent intent = new Intent(context, EmployeeDetailActivity.class);
                 intent.putExtra("employee", employee);
-                view.getContext().startActivity(intent);
+                context.startActivity(intent);
             }
         });
     }

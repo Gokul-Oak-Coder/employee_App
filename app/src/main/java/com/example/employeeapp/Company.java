@@ -1,13 +1,15 @@
 package com.example.employeeapp;
 
-public class Company {
-    String companyName;
+import java.io.Serializable;
 
-    public Company(String companyName) {
-        this.companyName = companyName;
+class Company implements Serializable {
+    String name;
+
+    public Company(String name) {
+        this.name = name;
     }
 
     public String getCompanyName() {
-        return companyName;
+        return name;
     }
 }
