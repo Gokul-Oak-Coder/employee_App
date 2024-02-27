@@ -1,6 +1,8 @@
 package com.example.employeeapp;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     String street;
     String suite;
     String city;

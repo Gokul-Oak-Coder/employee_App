@@ -19,15 +19,24 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         TextView emailTextView = findViewById(R.id.emailTextView);
         TextView phoneTextView = findViewById(R.id.phoneTextView);
         TextView webSiteTextView = findViewById(R.id.webSiteTextView);
+        TextView companyNameTextView = findViewById(R.id.companyDetailTextView);
+        TextView addressTextView = findViewById(R.id.addressTextView);
 
        final Employee employee = (Employee) getIntent().getSerializableExtra("employee");
 
+        Company company = employee.getCompany();
+        Address address = employee.getAddress();
+
+
         assert employee != null;
-        idTextView.setText(employee.getId());
-        nameTextView.setText(employee.getName());
-        emailTextView.setText(employee.getEmail().toLowerCase());
-        phoneTextView.setText(employee.getPhone());
-        webSiteTextView.setText(employee.getWebsite());
+        idTextView.setText("Employee Id: " +employee.getId());
+        nameTextView.setText("Name: " +employee.getName());
+        emailTextView.setText("Email: " +employee.getEmail().toLowerCase());
+        phoneTextView.setText("Phone Number: " +employee.getPhone());
+        webSiteTextView.setText(" Website: "+employee.getWebsite());
+        companyNameTextView.setText(" Company Name: "+company.getCompanyName());
+        addressTextView.setText(" "+address.getSuite()+", "+ address.getStreet()+", "+" \n"+" "+address.getCity()+"-"+address.getZipcode());
+
 
         // Handle email click
         emailTextView.setOnClickListener(new View.OnClickListener() {

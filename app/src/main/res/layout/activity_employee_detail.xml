@@ -2,13 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_marginBottom="20dp">
     <TextView
         android:id="@+id/idTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
         android:padding="16dp"/>
 
 
@@ -17,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
         android:padding="16dp" />
 
     <TextView
@@ -25,27 +30,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="email"
+        android:textColorLink="@android:color/black"
+        android:textSize="18sp"
         android:padding="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:textSize="18sp"
+            android:paddingStart="16dp"/>
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingStart="16dp"
+            />
 
     <TextView
         android:id="@+id/phoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="phone"
+        android:textColorLink="@android:color/black"
+        android:textSize="18sp"
         android:padding="16dp" />
-    <TextView
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:text="Company Details: "
+            android:textSize="18sp" />
+        <TextView
         android:id="@+id/companyDetailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="CompanyName: "
         android:autoLink="phone"
-        android:padding="16dp" />
-    <TextView
+        android:textSize="18sp" />
+        <TextView
         android:id="@+id/webSiteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:padding="16dp"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="20dp"
+        android:textSize="18sp" />
 
-
+     </LinearLayout>
 </LinearLayout>
+
+
